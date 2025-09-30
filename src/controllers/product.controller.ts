@@ -16,7 +16,7 @@ export const createProduct = async (req: Request, res: Response) => {
   try {
     const { name, description, price, inStock } = req.body;
     const product = await prisma.product.create({
-      data: { name, description, price, inStock },
+      data: { name, description, price},
     });
     res.status(201).json({ success: true, data: product });
   } catch (error) {
