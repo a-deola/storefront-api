@@ -1,8 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
 
 generator client {
   provider = "prisma-client-js"
@@ -20,17 +15,24 @@ model Product {
   baseImage   String?
   price       Float
   variants    ProductVariant[]
-  totalStock  Int              @default(0) // overall stock count
+  category    Category?        @relation(fields: [categoryId], references: [id])
+  categoryId  Int?
   createdAt   DateTime         @default(now())
   updatedAt   DateTime         @updatedAt
 }
 
 model ProductVariant {
-  id        Int      @id @default(autoincrement())
+  id        Int     @id @default(autoincrement())
   color     String?
   size      String?
   imageUrl  String?
-  stock     Int      @default(0)
-  product   Product  @relation(fields: [productId], references: [id])
+  stock     Int     @default(0)
+  product   Product @relation(fields: [productId], references: [id])
   productId Int
+}
+
+model Category {
+  id       Int       @id @default(autoincrement())
+  name     String    @unique
+  products Product[]
 }

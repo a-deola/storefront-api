@@ -1,10 +1,13 @@
-// src/routes/product.routes.ts
 import { Router } from "express";
-import { getProducts, createProduct } from "../controllers/product.controller";
+import { getProducts, getProductById, createProduct } from "../controllers/product.controller";
 
 const router = Router();
 
-router.get("/", getProducts);
-router.post("/", createProduct);
+router.get("/products", getProducts);
+router.get("/products/:id", getProductById);
+router.post("/products", createProduct);
 
 export default router;
+
+
+
