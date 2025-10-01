@@ -1,4 +1,4 @@
-import express from "express";
+import express, { Request, Response } from "express";
 import cors from "cors";
 import { PrismaClient } from "@prisma/client";
 import router from "./routes/product.routes.js";
@@ -10,7 +10,7 @@ app.use(express.json());
 app.use("/api", router);
 app.use(cors());
 
-app.get("/", (req, res) => {
+app.get("/", (req: Request, res: Response) => {
   res.send("🚀 API is running");
 });
 
