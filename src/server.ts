@@ -7,7 +7,6 @@ const app = express();
 const prisma = new PrismaClient();
 
 app.use(express.json());
-app.use("/api", router);
 app.use(
   cors({
     origin: ["http://localhost:3000"], 
@@ -15,6 +14,8 @@ app.use(
     credentials: true,
   })
 );
+app.use("/api", router);
+
 app.get("/", (req: Request, res: Response) => {
   res.send("🚀 API is running");
 });
