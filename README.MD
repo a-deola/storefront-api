@@ -57,7 +57,7 @@ curl "http://localhost:3000/products?category=Clothing"
 ```
 
 **Path Params:**  
-- `id` *(string, required)* – the unique identifier of the product  
+- `id` *(number, required)* – the unique identifier of the product  
 
 **Example Request (curl):**  
 ```bash
@@ -105,7 +105,7 @@ curl http://localhost:5000/products/1
 - `description` *(string, optional)*  
 -  `baseImage` *(string, required)*
 - `price` *(number, required)*  
-- `categoryId` *(string, required)*  
+- `categoryId` *(number, required)*  
 - `variants` *(array of objects, optional)*  
 
 **Example Input**
@@ -115,7 +115,7 @@ curl http://localhost:5000/products/1
   "description": "Lightweight sneakers perfect for running and casual wear.",
   "baseImage": "https://storefront-api-u9x3.onrender.com/api/products"
   "price": 79.99,
-  "categoryId": "2",
+  "categoryId": 2,
   "variants": [
     {
       "color": "White",
