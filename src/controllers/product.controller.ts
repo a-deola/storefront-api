@@ -1,23 +1,22 @@
 import type { Request, Response } from "express";
 import prisma from "../prisma.js";
 
-
 export const getProducts = async (req: Request, res: Response) => {
   try {
     const { category } = req.query;
+
+    console.log("finding products..");
 
     const products = await prisma.product.findMany({
       where: category ? { category: { name: String(category) } } : {},
       include: { variants: true, category: true },
     });
-
     res.json({ success: true, data: products });
   } catch (error) {
     console.error(error);
     res.status(500).json({ success: false, error: "Failed to fetch products" });
   }
 };
-
 
 export const getProductById = async (req: Request, res: Response) => {
   try {
@@ -28,7 +27,9 @@ export const getProductById = async (req: Request, res: Response) => {
     });
 
     if (!product) {
-      return res.status(404).json({ success: false, error: "Product not found" });
+      return res
+        .status(404)
+        .json({ success: false, error: "Product not found" });
     }
 
     res.json({ success: true, data: product });
@@ -40,18 +41,22 @@ export const getProductById = async (req: Request, res: Response) => {
 
 export const createProduct = async (req: Request, res: Response) => {
   try {
-    const { name, description, price, categoryId, variants } = req.body;
+    const { name, description, baseImage, price, categoryId, variants } =
+      req.body;
 
     if (!name || !price) {
-      return res.status(400).json({ success: false, error: "Name and price are required" });
+      return res
+        .status(400)
+        .json({ success: false, error: "Name and price are required" });
     }
 
     const product = await prisma.product.create({
       data: {
         name,
         description,
+        baseImage,
         price,
-        categoryId, 
+        categoryId,
         variants: {
           create: variants?.map((v: any) => ({
             color: v.color,
