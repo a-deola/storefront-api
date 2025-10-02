@@ -74,6 +74,8 @@ curl http://localhost:5000/products/1
     {
       "id":1,
       "name": "Denim Jacket",
+      "description": "Stylish blue denim jacket with a relaxed fit.",
+      "baseImage": "https://images.unsplash.com/photo-1541099649105-f69ad21f3246",
       "price": 49.99,
       "category": { "id":1,"name": "Clothing" },
       "variants": [
@@ -87,7 +89,9 @@ curl http://localhost:5000/products/1
       ]
     }
   ]
-}]
+}, 
+.......
+]
 ```  
 
 ---
@@ -99,6 +103,7 @@ curl http://localhost:5000/products/1
 **Body Params (JSON):**  
 - `name` *(string, required)*  
 - `description` *(string, optional)*  
+-  `baseImage` *(string, required)*
 - `price` *(number, required)*  
 - `categoryId` *(string, required)*  
 - `variants` *(array of objects, optional)*  
@@ -108,6 +113,7 @@ curl http://localhost:5000/products/1
 {
   "name": "Running Sneakers",
   "description": "Lightweight sneakers perfect for running and casual wear.",
+  "baseImage": "https://storefront-api-u9x3.onrender.com/api/products"
   "price": 79.99,
   "categoryId": "2",
   "variants": [
