@@ -9,7 +9,7 @@ const prisma = new PrismaClient();
 app.use(express.json());
 app.use(
   cors({
-    origin: ["http://localhost:3000"], 
+    origin: ["http://localhost:3000", "https://vercel.com/adeolacreators-projects/storefront/2TotpDEkRVUzfGJAYwgw4m2ULgZR"], 
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true,
   })
